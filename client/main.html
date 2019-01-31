@@ -3,15 +3,33 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
-  {{> info}}
+	<div class="container">
+		{{>profile}}
+  </div>
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="profile">
+<div class="row justify-content-around">
+			<div class="col-sm-6 text-center">
+		  <h1>Welcome to Tinder V1!</h1>
+			<img src="headshot.jpg" alt="NOT WORKING">
+		 <!--  {{> hello}}
+		  {{> info}} -->
+		  	</div>	
+  		</div>
+  		<div class="row justify-content-around">
+			<div class="col-sm-6 text-center">
+		  <h1>Brain Splatter Nickii(50M away)</h1>
+		  	</div>	
+  		</div>
+  		<div class="row justify-content-center">
+			<div class="col-sm-4 text-center">
+				<button class="btn btn-primary js-Interested">Interested</button>
+		  	</div>
+		  	<div class="col-sm-4 text-center">
+		  		<button class="btn btn-danger js-Uninterested">Uninterested</button>
+		  	</div>
+  		</div>
 </template>
 
 <template name="info">
