@@ -14,15 +14,27 @@ Template.profiles.events({//template events define and customize user interactio
 	'click .js-Interested'(event, instance) {
  		console.log("You clicked Interested");
  		var profID = this._id;
- 		userDB.update({_id:profID}, {$set:{'Interested':Interested+1}});
+ 		var numlikes = userDB.findOne({_id: profID}).Interested;
+ 		if(!numlikes){
+ 			numlikes = 0;
+ 		}
+ 		numlikes= numlikes+1;
+ 		userDB.update({_id:profID}, {$set:{'Interested':numlikes}});
   	},
   	'click .js-Uninterested'(event, instance) {
   		console.log("You clicked Uninterested");
+  		var profID = this._id;
+  		var numlikes = userDB.findOne({_id: profID}).Uninterested;
+ 		if(!numlikes){
+ 			numlikes = 0;
+ 		}
+ 		numlikes= numlikes+1;
+ 		userDB.update({_id:profID}, {$set:{'Uninterested':numlikes}});
   	},
   	'click .js-delete'(event,instance) {
   		var profID = this._id;
   		$("#" + profID).fadeOut("slow","swing",function(){
-  			userDB.remove({_id:this._id}); 	
+  			userDB.remove({_id:profID}); 	
   		});
   	}
 });
