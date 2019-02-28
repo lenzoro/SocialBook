@@ -33,10 +33,44 @@ Template.profiles.events({//template events define and customize user interactio
   	},
   	'click .js-delete'(event,instance) {
   		var profID = this._id;
+  		var targetmodal = "#modaledit" + this._id
   		$("#" + profID).fadeOut("slow","swing",function(){
   			userDB.remove({_id:profID}); 	
   		});
-  	}
+  		$(targetmodal).modal('hide');
+  	},
+  	'click .profEdit'(events,instance) {
+  		var targetmodal = "#modaledit" + this._id
+  		$(targetmodal).modal('show');
+
+  	},
+  	'click .js-edit'(events,instance) {
+  		var targetmodal = "#alterModal" + this._id
+  		$(targetmodal).modal('show');
+
+  	},
+  	'click .js-altersave'(event, instance) {
+  		var targetmodal = "#alterModal" + this._id
+		var fname = $(targetmodal + ' input[name="firstName"]').val()
+		var lname = $(targetmodal + ' input[name="lastName"]').val()
+		var img = $(targetmodal + ' input[name="Image"]').val()
+		if(img ==""){
+			img=this.Image;
+		}
+		if(fname ==""){
+			fname=this.firstName;
+		}
+		if(lname ==""){
+			lname=this.lastName;
+		}
+		console.log("The name is",fname,lname);
+		$(targetmodal + ' input[name="firstName"]').val('')
+		$(targetmodal + ' input[name="lastName"]').val('')
+		$(targetmodal + ' input[name="Image"]').val('')
+		$(targetmodal).modal('hide');
+		userDB.update({_id:this._id},{$set:{'firstName':fname,'lastName':lname, 'Image':img}});
+  		
+  }
 });
 
 Template.addUser.events({
@@ -55,4 +89,5 @@ Template.addUser.events({
 		userDB.insert({'firstName':fname,'lastName':lname, 'Image':img});
   		
   },
+
 }); 

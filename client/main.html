@@ -73,21 +73,26 @@
 <template name ="profiles">
 	{{#each profAll}}<!-- starts the html text that you want to repeat -->
 	<div id={{_id}} class="col-4">	
-		<div class="row justify-content-end">
+<!-- 		<div class="row justify-content-end">
 			<div class="col-1">
-				<i class="zmdi zmdi-delete zmdi-hc-2x js-delete"></i>
+				<i class="zmdi zmdi-delete zmdi-hc-2x "></i>
 			</div>
-		</div>
-		<div class="row justify-content-around">
-			<div class="col-sm-12 text-center">
-				<img class = "profilePic" src = "{{Image}}" alt="">
+
+		</div> -->
+		<button type="button" class="btn btn-primary profEdit">
+			<div class="row justify-content-around">
+				<div class="col-sm-12 text-center">
+					<img class = "profilePic" src = "{{Image}}" alt="">
+				</div>
 			</div>
-		</div>
+		</button>
 		<div class="row justify-content-center">
 			<div class="col-sm-4 text-center">
 				{{firstName}} {{lastName}}
 			</div>
 		</div>
+	
+		
 		<div class ="row justify-content-center">
 			<div class="row justify-content-between">
 				<div class="col-sm-4 text-center">
@@ -97,6 +102,86 @@
 				<div class="col-sm-4 text-center">
 					<button class = "js-Uninterested">Uninterested</button>{{Uninterested}}
 					<!-- <h1 class="display-4">{{Uninterested}}</h1> -->
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="modaledit{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		    		<div class="row justify-content-around">
+						<div class="col text-center">
+							<img class = "profilePic" src = "{{Image}}" alt="">
+						</div>
+						<div class="col-4 text-center">
+							<h1 class="editname">Name:</h1>{{firstName}} {{lastName}}
+						</div>
+						<div class="col-4 text-center">
+							<h1 class="editname">Interested</h1>{{Interested}} 
+						</div>
+						<div class="col-4 text-center">
+							<h1 class="editname">Uninterested</h1> {{Uninterested}}
+						</div>
+
+					</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary js-edit">Edit</button>
+		        <button type="button" class="js-delete btn btn-primary">Delete</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="alterModal{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		    		<div class="modal-header">
+		        		<h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+		        		</button>
+		      		</div>
+		      		
+		      		<div class="modal-body">
+		      			<form>
+							<div class="form-group">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="basic-addon1">First Name</span>
+									</div>
+									<input type="text" name="firstName" class="form-control" placeholder="{{firstName}}" aria-describedby="basic-addon1">
+								</div>
+
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="basic-addon1">Last Name</span>
+									</div>
+									<input type="text" name="lastName" class="form-control" placeholder="{{lastName}}" aria-describedby="basic-addon1">
+								</div>
+
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="basic-addon1">Profile Image</span>
+									</div>
+									<input type="text" name="Image" class="form-control" placeholder="{{Image}}" aria-describedby="basic-addon1">
+								</div>
+
+						  	</div>
+						</form>
+		      		</div>
+					<div class="modal-footer">
+			        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		    	    	<button type="button" class="btn btn-primary js-altersave">Submit</button>
+					</div>
 				</div>
 			</div>
 		</div>
